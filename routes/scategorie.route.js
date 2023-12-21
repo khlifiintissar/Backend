@@ -43,18 +43,15 @@ res.status(404).json({ message: error.message });
 });
 // modifier une catégorie
 router.put('/:scategorieId', async (req, res)=> {
-const { nomscategorie, imagescat,categorieID} = req.body;
-const id = req.params.scategorieId;
+
 
 try {
 
-const scat1 = {
-nomscategorie:nomscategorie,imagescat:imagescat,categorieID:categorieID
-, _id:id };
+    const scat=await SCategorie.findByIdAndUpdate(
 
-await SCategorie.findByIdAndUpdate(id, scat1);
-
-res.json(scat1);
+        req.params.scategorieId,
+        {$set:req.body},
+        {new:true})
 } catch (error) {
 res.status(404).json({ message: error.message });
 }

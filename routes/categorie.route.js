@@ -24,9 +24,7 @@ res.status(200).json(newCategorie );
 res.status(404).json({ message: error.message });
 }
 });
-// chercher une catégorie
-router.get('/:categorieId',async(req, res)=>{
-});
+
 // modifier une catégorie
 router.put('/:categorieId', async (req, res)=> {
          
@@ -54,6 +52,7 @@ res.json({ message: "categorie deleted successfully." });
 });
 router.get('/:categorieId',async(req, res)=>{
     try {
+        console.log(req.params.categorieId)
     const cat = await Categorie.findById(req.params.categorieId);
     
     res.status(200).json(cat);
